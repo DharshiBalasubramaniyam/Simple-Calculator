@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Calculater</title>
+</head>
+<body>
+    <div id="container">
+        <div id="grid-container">
+            <input type="text" name="display" value=""  class="display" id="display1"><br>
+            <input type="text" name="display" value="" class="display" id="display2">
+            <div id="row1">
+                <button id="on" onclick="onCalculater()" >ON</button>
+                <button id="al-clear" onclick="allClear()" class="clear">AC</button>
+                <button id="clear" onclick="del()" class="clear">DEL</button>
+                <button id="equal" onclick="calculate()">=</button>
+            </div>
+
+            <div id="row2">
+                <button class="number" onclick="show(this)">1</button>
+                <button class="number" onclick="show(this)">2</button>
+                <button class="number" onclick="show(this)">3</button>
+                <button class="operator" onclick="show(this)">+</button>
+            </div>
+            
+            <div id="row3">
+                <button class="number" onclick="show(this)">4</button>
+                <button class="number" onclick="show(this)">5</button>
+                <button class="number" onclick="show(this)">6</button>
+                <button class="operator" onclick="show(this)">-</button>
+            </div>
+
+            <div id="row4">
+                <button class="number" onclick="show(this)">7</button>
+                <button class="number" onclick="show(this)">8</button>
+                <button class="number" onclick="show(this)">9</button>
+                <button class="operator" onclick="show(this)">*</button>
+            </div>
+            
+            <div id="row5">
+                <button class="number" onclick="show(this)">0</button>
+                <button class="number" onclick="show(this)">00</button>
+                <button class="number" onclick="show(this)">.</button>
+                <button class="operator" onclick="show(this)">/</button>
+            </div>
+            
+        </div>
+    </div>
+
+    <script>
+        let isOn = false;
+        let display2 = document.getElementById("display2");
+        let display1 = document.getElementById("display1");
+
+        function show(e) {
+            if (display1.value == "0") {
+                display1.value = "";
+            }
+            if (isOn) {
+                display1.value += e.textContent;
+            }
+            else {
+                display1.value = "";
+            }
+            
+        }
+
+        function allClear() {
+            display1.value = "0";
+            display2.value = "";
+        }
+        
+        function calculate() {
+            if (isOn) {
+                display2.value = "=" + eval(display1.value);
+            }
+            else {
+                display1.value = "";
+            }
+        }
+
+        function del() {
+            let text = display1.value;
+            console.log("hi");
+            display2.value = "";
+            if (display1.value!="0") {
+                display1.value = text.substring(0, text.length-1);
+            }
+            
+        }
+
+        function onCalculater(e) {
+            isOn = true;
+            display1.value = "0";
+        }
+
+    </script>
+    
+</body>
+</html>
